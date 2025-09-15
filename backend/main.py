@@ -125,11 +125,11 @@ def foo():
     print(request.json)
     return jsonify(game.calculate_state(request.json))
 
-#Poruszanie sie w 4 kierunkach g
-#Przechodzenie przez sciany g
-#Zjadanie jablka i rosniecie g
-#Porusznie wasd g
-#Kolizja wewnetrzna g
+#Poruszanie sie w 4 kierunkach
+#Przechodzenie przez sciany
+#Zjadanie jablka i rosniecie
+#Porusznie wasd
+#Kolizja wewnetrzna
 #Nie można wejsc w siebie
 #Testy
 #Ruch jednego weza nie moze cofać drugiego
