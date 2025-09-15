@@ -201,9 +201,9 @@ document.addEventListener('keydown', function(e) {
 });
 function sendMove(move, player) {
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://192.168.1.100:8888/move", false); // false makes it synchronous
+  xhr.open("POST", "http://192.168.1.106:8888/move", false);
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  
+
   try {
     xhr.send(JSON.stringify({
         type: "move",
@@ -223,7 +223,7 @@ function sendMove(move, player) {
     return null;
   }
 
-//     fetch("http://192.168.1.104:8888/move", {
+//     fetch("http://192.168.1.106:8888/move", {
 //   method: "POST",
 //   body: JSON.stringify({
 //     type: "move",

@@ -20,7 +20,7 @@ OPPOSING_MOVE = {
 class Game:
     def __init__(self):
         self.tick = 0
-        self.players = [Snake([(0, 0), (0, 16), (16, 0)]), Snake([(384, 384), (368, 384), (384, 368)])]
+        self.players = [Snake([(32, 0), (16, 0), (0, 0)]), Snake([(352, 384), (368, 384), (384, 384)])]
         self.food = Food().genereting_food()
 
     def calculate_state(self, client_update):
@@ -77,8 +77,8 @@ class Snake:
 
     def move(self, direction):
         if direction == OPPOSING_MOVE[self.last_move]:
-            return head
-
+            return self.curr_pos[0]
+        
         head = list(self.curr_pos[0])
 
         if direction == "UP":
@@ -113,9 +113,6 @@ class Snake:
 
 game = Game()
 
-if __name__ == "__main__":
-    pass 
-
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
@@ -125,11 +122,5 @@ def foo():
     print(request.json)
     return jsonify(game.calculate_state(request.json))
 
-#Poruszanie sie w 4 kierunkach
-#Przechodzenie przez sciany
-#Zjadanie jablka i rosniecie
-#Porusznie wasd
-#Kolizja wewnetrzna
-#Nie można wejsc w siebie
-#Testy
-#Ruch jednego weza nie moze cofać drugiego
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)
