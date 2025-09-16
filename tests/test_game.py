@@ -1,5 +1,5 @@
 import pytest
-from main import Food, Game, Snake, OPPOSING_MOVE
+from backend.game import Game, Snake, Food, OPPOSING_MOVE
 
 class TestMovement:
 
@@ -77,7 +77,7 @@ class TestGame:
         snake = game.players[0]
         snake.curr_pos = ([(16, 16), (16, 32), (0, 32), (0, 16), (0, 0)])
         snake.move("LEFT")
-        assert len(snake.curr_pos) != len(set(snake.curr_pos))
+        assert snake.is_game_over()
 
     #Turning back
     def test_turning_back(self):
@@ -88,6 +88,7 @@ class TestGame:
         head_after = snake.move("LEFT")
 
         assert head_before == head_after
+        assert snake.last_move == "RIGHT"
 
     #Move one snake does not affect other
     def test_move_one_snake_does_not_affect_other(self):
