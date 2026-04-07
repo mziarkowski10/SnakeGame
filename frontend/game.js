@@ -32,7 +32,14 @@ function loop() {
         ctx.fillStyle = "white";
         ctx.font = "20px monospace";
         ctx.textAlign = "center";
-        ctx.fillText("GAME OVER", canvas.width/2, canvas.height/2);
+        ctx.fillText("GAME OVER", canvas.width/2, canvas.height/2 - 20);
+        ctx.fillText("Score: " + state.points, canvas.width/2, canvas.height/2 + 10);
+        ctx.fillText("Press r to restart", canvas.width/2, canvas.height/2 + 40);
+
+        if (state.new_highscore) {
+            ctx.fillText("CONGRATULATIONS!", canvas.width/2, canvas.height/2 + 100);
+            ctx.fillText("YOU REACHED A NEW HIGH SCORE!", canvas.width/2, canvas.height/2 + 130);
+    }
         return;
     }
 
@@ -50,6 +57,11 @@ function loop() {
 document.addEventListener('keydown', e => {
     let moved = false;
 
+    if (e.key === "r" || e.key === "R") {
+        resetGame();
+        return;
+    }
+
     switch(e.key) {
         case "ArrowUp": direction = "UP"; moved = true; break;
         case "ArrowDown": direction = "DOWN"; moved = true; break;
@@ -62,6 +74,18 @@ document.addEventListener('keydown', e => {
         sendMove();
     }
 });
+
+function resetGame() {
+    fetch("http://127.0.0.1:5000/reset", {
+        method: "POST"
+    })
+    .then(() => {
+        state = null;
+        gameStarted = false;
+        direction = "RIGHT";
+    })
+    .catch(err => console.error("Reset error:", err));
+}
 
 function sendMove() {
     fetch("http://127.0.0.1:5000/move", {

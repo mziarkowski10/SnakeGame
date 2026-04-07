@@ -20,7 +20,8 @@ class Game:
     def calculate_state(self, client_update):
         if self.game_over:
             return {
-                "type": "gameover"
+                "type": "gameover",
+                "points": self.player.points
             }
 
         self.tick += 1
@@ -37,13 +38,15 @@ class Game:
 
         if head == self.food:
             self.food = Food().generate_food(self.snake)
+            self.player.points += 1
         else:
             snake.curr_pos.pop()
 
         if snake.is_game_over():
             self.game_over = True
             return {
-                "type": "gameover"
+                "type": "gameover",
+                "points": self.player.points
             }
 
         response =  {
@@ -52,7 +55,8 @@ class Game:
             "player": {
                 "id": 0,
                 "position": snake.curr_pos
-            }
+            },
+            "points": self.player.points
         }
 
         return response
@@ -66,18 +70,15 @@ class Food:
         while True:
             x = random.randrange(0, 400, 16)
             y = random.randrange(0, 400, 16)
-            collision = False
 
-            if (x, y) in snake:
-                collision = True
-
-            if not collision:
+            if (x, y) not in snake:
                 return x, y
 
 class Snake:
     def __init__(self, pos):
         self.curr_pos = pos
         self.last_move = None
+        self.points = 0
 
     def move(self, direction):
         if not self.curr_pos:
