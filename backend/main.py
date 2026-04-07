@@ -1,16 +1,12 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from game import Game
+from backend.game import Game
 
 
 app = Flask(__name__)
 CORS(app)
 
 game = Game()
-
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
 
 @app.route('/move', methods=['POST']) 
 def move():

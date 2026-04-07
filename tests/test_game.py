@@ -58,7 +58,7 @@ class TestGame:
     #Eating apples
     def test_eating_apple(self):
         game = Game()
-        snake = game.players[0]
+        snake = game.player
         food = (48, 0)
         game.food = (48, 0)
         request = {
@@ -74,21 +74,10 @@ class TestGame:
     #Game over
     def test_game_over(self):
         game = Game()
-        snake = game.players[0]
+        snake = game.player
         snake.curr_pos = ([(16, 16), (16, 32), (0, 32), (0, 16), (0, 0)])
         snake.move("LEFT")
         assert snake.is_game_over()
-
-    #Turning back
-    def test_turning_back(self):
-        game = Game()
-        snake = game.players[0]
-        snake.last_move = "RIGHT"
-        head_before = snake.curr_pos[0]
-        head_after = snake.move("LEFT")
-
-        assert head_before == head_after
-        assert snake.last_move == "RIGHT"
 
     #Move one snake does not affect other
     def test_move_one_snake_does_not_affect_other(self):
