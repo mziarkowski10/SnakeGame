@@ -1,0 +1,10 @@
+.game-layout {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    gap: var(--spacing);
+    padding: var(--spacing);
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-bg);
+}

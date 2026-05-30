@@ -1,5 +1,10 @@
-import GameContainer from "./game/GameContainer";
+import GameLayout from "./components/GameLayout";
+import "./App.css";
 
 export default function App() {
-  return <GameContainer />;
+  return (
+    <div className="app-container">
+      <GameLayout />
+    </div>
+  );
 }
