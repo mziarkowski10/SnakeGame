@@ -1,5 +1,5 @@
-function App() {
-  return <></>;
-}
+import GameContainer from "./game/GameContainer";
 
-export default App;
+export default function App() {
+  return <GameContainer />;
+}
