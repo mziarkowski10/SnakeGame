@@ -1,12 +1,87 @@
 html, body {
   height: 100%;
   margin: 0;
+  background-color: black;
+  color: white;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: black;
+  padding: 20px;
+}
+
+.game-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
 }
 
 canvas {
   border: 2px solid white;
+  background-color: #000;
+}
+
+.score-panel {
+  width: 220px;
+  padding: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 14px;
+  color: white;
+  background: rgba(0, 0, 0, 0.84);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.12);
+}
+
+.score-panel h2 {
+  margin: 0 0 16px;
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  color: #fff;
+}
+
+.score-panel table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.score-panel th,
+.score-panel td {
+  padding: 8px 6px;
+  color: #fff;
+}
+
+.score-panel th {
+  text-align: left;
+  font-weight: 400;
+  opacity: 0.8;
+  vertical-align: top;
+}
+
+.score-panel td {
+  text-align: right;
+}
+
+.score-panel tr + tr th {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.score-notes {
+  margin-top: 18px;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  opacity: 0.85;
+}
+
+@media (max-width: 700px) {
+  .game-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .score-panel {
+    width: auto;
+  }
 }

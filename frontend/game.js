@@ -8,6 +8,26 @@ let gameStarted = false;
 
 let direction = "RIGHT";
 
+const scoreValue = document.getElementById('score-value');
+const lengthValue = document.getElementById('length-value');
+const directionValue = document.getElementById('direction-value');
+const statusValue = document.getElementById('status-value');
+
+function updateScorePanel() {
+    const points = state?.points ?? 0;
+    const length = state?.player?.position?.length ?? 3;
+    const status = state?.type === "gameover"
+        ? "Game Over"
+        : gameStarted
+            ? "Playing"
+            : "Press arrow key to start";
+
+    scoreValue.textContent = points;
+    lengthValue.textContent = length;
+    directionValue.textContent = direction;
+    statusValue.textContent = status;
+}
+
 function loop() {
     requestAnimationFrame(loop);
     if (++count < 4) return;
@@ -52,6 +72,13 @@ function loop() {
     player.position.forEach(cell => {
         ctx.fillRect(cell[0], cell[1], grid-1, grid-1);
     });
+
+    const enemy = state.enemy;
+
+    ctx.fillStyle = "blue";
+    enemy.position.forEach(cell => {
+        ctx.fillRect(cell[0], cell[1], grid-1, grid-1);
+    });
 }
 
 document.addEventListener('keydown', e => {
@@ -83,6 +110,7 @@ function resetGame() {
         state = null;
         gameStarted = false;
         direction = "RIGHT";
+        updateScorePanel();
     })
     .catch(err => console.error("Reset error:", err));
 }
@@ -97,7 +125,10 @@ function sendMove() {
         })
     })
     .then(res => res.json())
-    .then(data => state = data)
+    .then(data => {
+        state = data;
+        updateScorePanel();
+    })
     .catch(err => console.error("Error:", err));
 }
 
@@ -106,4 +137,5 @@ setInterval(() => {
     sendMove();
 }, 120);
 
+updateScorePanel();
 requestAnimationFrame(loop);
