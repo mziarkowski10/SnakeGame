@@ -1,0 +1,16 @@
+.game-stage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.game-box {
+    position: relative;
+    width: var(--canvas-size);
+    height: var(--canvas-size);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: 12px;
+    background-color: var(--color-stage-surface);
+    overflow: hidden;
+}

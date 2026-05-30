@@ -1,15 +1,35 @@
-html,
-body {
-    height: 100%;
-    margin: 0;
-    background-color: black;
-    color: white;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+:root {
+    --canvas-size: 640px;
+    --sidebar-width: 300px;
+    --spacing: 20px;
+    --border-width: 1px;
+    --color-primary: #f8fafc;
+    --color-bg: #0d0d0d;
+    --color-surface: #141414;
+    --color-sidebar: #111111;
+    --color-border: #2a2a2a;
+    --color-section-bg: rgba(255, 255, 255, 0.02);
+    --color-stage-surface: rgba(17, 24, 39, 0.9);
+    --color-canvas-bg: #0d0d0d;
+    --color-overlay-bg: rgba(0, 0, 0, 0.9);
+    --color-text: #f8fafc;
+    --color-text-muted: #9ca3af;
+    --font-primary: 'Courier New', Courier, monospace;
+    --font-heading: 'Space Mono', monospace;
 }
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-primary);
 }
